@@ -12,11 +12,11 @@ pipeline {
             }
         }
 
-        stage('Install Ansible') {
-            steps {
-                sh 'apt install ansible'
-            }
-        }
+       // stage('Install Ansible') {
+           // steps {
+              //  sh 'apt install ansible'
+          //  }
+      //  }
 
         stage('Run Ansible playbook') {
             environment {
