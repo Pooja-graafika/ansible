@@ -17,7 +17,7 @@ pipeline {
             steps {
                 
                     sshagent(credentials: ['8e295089-1193-4339-b920-63cabbd2c0f8']) {
-                  //      sh 'ssh -i /root/.ssh/id_rsa2 root@3.110.101.233 "<COMMAND>"'
+                      sh 'ssh -i /root/.ssh/id_rsa2 root@3.110.101.233'
                     }
                 }
             }
