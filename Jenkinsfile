@@ -2,9 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Git Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Pooja-graafika/ansible.git'
+       steps {
+                checkout(
+                    scmGit([
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Pooja-graafika/ansible.git']]
+                    ])
+                )
             }
         }
         
