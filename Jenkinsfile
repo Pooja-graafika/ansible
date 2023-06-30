@@ -21,7 +21,7 @@ pipeline {
                     }
                 }
             }
-         }
+         
 
       //  stage('Run Ansible playbook') {
        //     environment {
