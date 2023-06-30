@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Pooja-graafika/CI-CD-Project.git'
+                git branch: 'main', url: 'https://github.com/Pooja-graafika/ansible.git'
             }
         }
         
