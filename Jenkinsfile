@@ -16,7 +16,7 @@ pipeline {
             steps {
                 
                 // sh 'ssh <SSH_OPTIONS> <SSH_USER>@<SSH_HOST> "<COMMAND>"'
-                 sh  'ssh -i /root/.ssh/id_rsa2 root@3.110.101.233''
+                 sh  'ssh -i /root/.ssh/id_rsa2 root@3.110.101.233'
             }
         }
 
