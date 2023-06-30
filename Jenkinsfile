@@ -14,10 +14,13 @@ pipeline {
         
         stage('Execute SSH command') {
             steps {
-                
+                sshagent(credentials: ['8e295089-1193-4339-b920-63cabbd2c0f8']) {
                 // sh 'ssh <SSH_OPTIONS> <SSH_USER>@<SSH_HOST> "<COMMAND>"'
                  sh  'sudo -S su'
                  sh  'ssh -i /root/.ssh/id_rsa2 root@3.110.101.233'
+                }
+        
+    
             }
         }
 
