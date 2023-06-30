@@ -1,0 +1,62 @@
+---
+- name: Install Docker and Terraform on EC2 instance
+  hosts: ec2
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Install dependencies
+      become: true
+      package:
+        name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+        state: present
+
+    - name: Add Docker GPG key
+      become: true
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker APT repository
+      become: true
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts['lsb']['codename'] }} stable
+        state: present
+
+    - name: Update APT cache
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      become: true
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Add user to Docker group
+      become: true
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Install Terraform
+      become: true
+      get_url:
+        url: https://releases.hashicorp.com/terraform/0.14.10/terraform_0.14.10_linux_amd64.zip
+        dest: /tmp/terraform.zip
+
+    - name: Unzip Terraform
+      become: true
+      unarchive:
+        src: /tmp/terraform.zip
+        dest: /usr/local/bin/
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+
+    - name: Set Terraform permissions
+      become: true
+      file:
+        path: /usr/local/bin/terraform
+        mode: '+x'
