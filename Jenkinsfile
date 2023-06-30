@@ -3,11 +3,11 @@ pipeline {
 
     stages {
          stage('Git Checkout'){
-                
+                when{expression{params.action == "create"}}    
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/Pooja-graafika/ansible.git"
+                url: "https://github.com/Pooja-graafika/CI-CD-Project.git"
             )
             }
         }
