@@ -3,7 +3,7 @@ pipeline {
 
     stages {
          stage('Git Checkout'){
-                when{expression{params.action == "update"}}    
+               // when{expression{params.action == "update"}}    
             steps{
             gitCheckout(
                 branch: "main",
